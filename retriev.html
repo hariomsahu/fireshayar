@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Display Data Page</title>
+  </head>
+  <body>
+    <h1>Display Data Page</h1>
+    <table id="data-table">
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+      </tr>
+    </table>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-analytics.js";
+      import {
+        getDatabase,
+        ref,
+        onValue,
+      } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
+      const firebaseConfig = {
+        // Your web app's Firebase configuration
+        apiKey: "AIzaSyDtWQOSzXbFOuv9SM0RLQ1GawF8y0_xgLg",
+        authDomain: "yourshayar-5a1c1.firebaseapp.com",
+        databaseURL: "https://yourshayar-5a1c1-default-rtdb.firebaseio.com",
+        projectId: "yourshayar-5a1c1",
+        storageBucket: "yourshayar-5a1c1.appspot.com",
+        messagingSenderId: "991777267896",
+        appId: "1:991777267896:web:55d050539a5cc838f6d44d",
+        measurementId: "G-04HWQ8X12Q",
+      };
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      const database = getDatabase();
+
+      const dataTable = document.querySelector("#data-table");
+
+      onValue(ref(database, "users/"), (snapshot) => {
+        const data = snapshot.val();
+        dataTable.innerHTML = `
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Email</th>
+        </tr>
+      `;
+        for (const key in data) {
+          const row = `
+          <tr>
+            <td>${data[key].name}</td>
+            <td>${data[key].age}</td>
+            <td>${data[key].email}</td>
+          </tr>
+        `;
+          dataTable.innerHTML += row;
+        }
+      });
+    </script>
+  </body>
+</html>
