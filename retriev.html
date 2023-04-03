@@ -5,6 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Display Data Page</title>
+    <style>
+      * {
+        margin: 0%;
+        padding: 0%;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        text-align: center;
+        padding: 10px;
+      }
+    </style>
   </head>
   <body>
     <h1>Display Data Page</h1>
@@ -13,6 +26,11 @@
         <th>Name</th>
         <th>Age</th>
         <th>Email</th>
+        <th>father</th>
+        <th>mother</th>
+        <th>mobile</th>
+        <th>aadhar</th>
+        <th>Pan</th>
       </tr>
     </table>
 
@@ -47,8 +65,13 @@
         dataTable.innerHTML = `
         <tr>
           <th>Name</th>
-          <th>Age</th>
-          <th>Email</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>father</th>
+        <th>mother</th>
+        <th>mobile</th>
+        <th>aadhar</th>
+        <th>Pan</th>
         </tr>
       `;
         for (const key in data) {
@@ -57,6 +80,16 @@
             <td>${data[key].name}</td>
             <td>${data[key].age}</td>
             <td>${data[key].email}</td>
+            <td>${data[key].father}</td>
+            <td>${data[key].mother}</td>
+            <td>${data[key].mobile}</td>
+            <td>${data[key].aadhar}
+              </td>
+                      <td>${data[key].pancard}</td>
+
+
+
+
           </tr>
         `;
           dataTable.innerHTML += row;
